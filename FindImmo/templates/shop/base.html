@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}My shop{% endblock %}</title>
+    {% load static %}
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{%  static "img/favicon.ico" %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div id="header">
+        <img src="{% static '/img/shop1.png' %}" alt="My image" style="width:450px;"/>
+        <img src="{% static '/img/imagesP3_large.png' %}" alt="My image" style="width:450px;"/>
+        <img src="{% static '/img/imagesP4.png' %}" alt="My image" style="width:440px;"/>
+    </div>
+    <div id="subheader">
+        <a href="/" class="logo">Ma Boutique</a>
+        <div class="search-container">
+            <form action="{% url "shop:search_list" %}" method="get" accept-charset="utf-8">
+              <select id="SearchType" name = 'st'>
+                <option value="book">Book</option>
+                <option value="author">Author</option>
+              </select>
+              <input id="searchbox" name="q" type="text" placeholder="Search">
+              <button type="submit" value="Search"><i class="fa fa-search"></i></button> 
+            </form>
+        </div>
+        <div class="cart">
+            {% if user.is_authenticated %}
+                <a><span class="glyphicon glyphicon-user"></span> Salut! {{ user.get_username }}</a><br>
+            {% else %}
+                <a><span class="glyphicon glyphicon-user"></span> Salut! <a href="{% url "logindata" %}">S'identifier</a><br>
+            {% endif %}
+            {% with total_items=cart|length %}
+                {% if cart|length > 0 %}
+                    Votre Panier:<span class="glyphicon glyphicon-shopping-cart"></span> 
+                    <a href="{% url "cart:cart_detail" %}">
+                        {{ total_items }} item{{ total_items|pluralize }}, ${{ cart.get_total_price|floatformat:"0"}}
+                    </a>
+                {% else %}
+                    Your cart is empty.
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+<script>
+    function myFunction(imgs) {
+        var expandImg = document.getElementById("expandedImg");
+        var imgText = document.getElementById("imgtext");
+        expandImg.src = imgs.src;
+        imgText.innerHTML = imgs.alt;
+        expandImg.parentElement.style.display = "block";
+    }
+</script>
+</body>
+</html>

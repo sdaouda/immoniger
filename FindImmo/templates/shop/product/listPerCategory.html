@@ -1,0 +1,101 @@
+{% extends "shop/index.html" %}
+{% load static %}
+
+{% block content %}
+
+<!--/banner-section-->
+	<div id="demo-1" data-zs-src='["{% static "images/1.jpg" %}","{% static "images/3.jpg" %}","{% static "images/4.jpg" %}"]' data-zs-overlay="dots">
+		<div class="demo-inner-content">
+			<!--/banner-info-->
+			   <div class="baner-info">
+			      <h3>Vous cherchez une <span>Maison</span> en <span>location</span> ...</h3>
+				  <h4>Obtenir la villa de vos rêves</h4>
+				  <span><img src="{% static "images/logo2.png" %}" alt=""></span>
+			   </div>
+			<!--/banner-ingo-->		
+		</div>
+	</div>
+	<!--/banner-section-->
+<!-- /pop-->
+<div class="modal ab fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog sign" role="document">
+		<div class="modal-content about">
+			<div class="modal-header one">
+				<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+					<div class="discount one">
+						<h3>A Few Words about Us</h3>	
+					</div>							
+			</div>
+			<div class="modal-body about">
+					<img src="{% static "images/v5.jpg" %}" alt="w3ls" class="img-responsive">
+				<h4>Lorem ipsum Nam libero tempore</h4>
+				<p>Lorem ipsum Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere.Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+				
+			</div>		
+		</div>
+	</div>
+</div>
+<!-- //pop-->
+{% endblock content %}
+{% block content1 %}
+<div class="container">
+	<div class="col-md-3" style="padding:0;">
+		<!-- Sidebar -->
+	    <div class="bg-light border-right" id="sidebar-wrapper">
+	      <div class="list-group list-group-flush">
+	      	{% for c in categories %}
+			    <a href="{{ c.get_absolute_url }}" class="list-group-item list-group-item-action bg-light">{{ c.name }}</a>
+			{% endfor %}
+	      </div>
+	    </div>
+	</div>
+	<div class="col-md-9" style="padding:0;">
+		{% if Lproducts %}
+		<hr style="border: 10px solid #7ac143; position:relative;margin-top:0px;top:0px;">
+		<div class="gallery agile" id="gallery">
+			<div id = "lgallery" class="agile_gallery_grids w3-agile">
+				<h3 class="tittle"><span>Gallerie</span> Location ({{Lproducts.count}})</h3>
+				<ul class="clearfix demo">
+					{% for product in Lproducts %}
+					<li>
+						<div class="gallery-grid1">
+							<a href="{{ product.get_absolute_url }}"><img src="{{ product.image.url }}" alt=" " class="img-responsive" /></a>
+							<div class="p-mask">
+								<a href="{{ product.get_absolute_url }}"><h4>{{ product.action_type }} <span>{{ product.category }}</span></h4>
+								<p>{{ product.localite }}</p>
+								<p>{{ product.price }} /mois</p></a>				
+							</div>
+						</div>
+					</li>
+					{% endfor %}		
+				</ul>
+			</div>
+			<hr style="border: 10px solid #7ac143;">
+		</div>
+		{% endif %}
+
+		{% if Vproducts %}
+		<div class="gallery agile" id="gallery">
+			<div id = "vgallery" class="agile_gallery_grids w3-agile">
+				<h3 class="tittle">Gallerie<span> Vente</span> ({{Vproducts.count}})</h3>
+				<ul class="clearfix demo">
+					{% for product in Vproducts %}
+					<li>
+						<div class="gallery-grid1">
+							<a href="{{ product.get_absolute_url }}"><img src="{{ product.image.url }}" alt=" " class="img-responsive" /></a>
+							<div class="p-mask">
+								<a href="{{ product.get_absolute_url }}"><h4>{{ product.action_type }} <span>{{ product.category }}</span></h4>
+								<p>{{ product.localite }}</p>
+								<p>{{ product.price }} cfa</p></a>		
+							</div>
+						</div>
+					</li>
+					{% endfor %}		
+				</ul>
+			</div>
+			<hr style="border: 10px solid #7ac143;">
+		</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock content1 %}

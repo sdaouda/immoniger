@@ -1,0 +1,95 @@
+{% extends "shop/index.html" %}
+{% load static %}
+
+{% block content1 %}
+<div class="container">
+<div class="agile_gallery_grids w3-agile">
+<h3 class="tittle"> Our <span>Gallery</span></h3>
+{% if lqueryset_list %}
+<ul class="clearfix demo">
+		{% for list in lqueryset_list %}
+		<li>
+			<div class="gallery-grid1">
+				<a href="{{ list.get_absolute_url }}"><img src="{{ list.image.url }}" alt=" " class="img-responsive" /></a>
+				<div class="p-mask">
+					<a href="{{ list.get_absolute_url }}"><h4>{{list.action_type}} <span>{{ list.category }}</span></h4>
+					<p>{{ list.name }}</p>
+					<p>{{ list.price }}</p>
+					<p>{{ list.localite }}</p></a>
+				</div>
+			</div>
+		</li>
+		{% empty %}
+		<li>0 correspondance</li>
+		{% endfor %}	
+</ul>
+{% endif %}
+{% if vqueryset_list %}
+<ul class="clearfix demo">
+		{% for list in vqueryset_list %}
+		<li>
+			<div class="gallery-grid1">
+				<a href="{{ list.get_absolute_url }}"><img src="{{ list.image.url }}" alt=" " class="img-responsive" /></a>
+				<div class="p-mask">
+					<a href="{{ list.get_absolute_url }}"><h4>{{list.action_type}} <span>{{ list.category }}</span></h4>
+					<p>{{ list.name }}</p>
+					{% ifequal list.action_type 'LOCATION' %}
+						<p>{{ list.price }} /mois</p>
+					{% else %}
+						<p>{{ list.price }} cfa</p>
+					{% endifequal %}
+					<p>{{ list.localite }}</p></a>
+				</div>
+			</div>
+		</li>
+		{% empty %}
+		<li>0 correspondance</li>
+		{% endfor %}	
+</ul>
+{% endif %}
+
+{% if Lproducts %}
+<ul class="clearfix demo">
+	{% for lproduct in Lproducts %}
+	<li>
+		<div class="gallery-grid1">
+			<a href="{{ lproduct.get_absolute_url }}"><img src="{{ lproduct.image.url }}" alt=" " class="img-responsive" /></a>
+			<div class="p-mask">
+				<a href="{{ lproduct.get_absolute_url }}"><h4>location <span>{{ lproduct.category }}</span></h4>
+				<p>{{ lproduct.name }}</p>
+				{% ifequal lproduct.action_type 'LOCATION' %}
+					<p>{{ lproduct.price }} /mois</p>
+				{% else %}
+					<p>{{ lproduct.price }} cfa</p>
+				{% endifequal %}</a>
+			</div>
+		</div>
+	</li>
+	{% empty %}
+	<li>0 correspondance</li>
+	{% endfor %}	
+</ul>
+
+{% endif %}
+{% if Vproducts %}
+<ul class="clearfix demo">
+		{% for vproduct in Vproducts %}
+		<li>
+			<div class="gallery-grid1">
+				<a href="{{ vproduct.get_absolute_url }}"><img src="{{ vproduct.image.url }}" alt=" " class="img-responsive" /></a>
+				<div class="p-mask">
+					<a href="{{ vproduct.get_absolute_url }}"><h4>vente <span>{{ vproduct.category }}</span></h4>
+					<p>{{ vproduct.name }}</p>
+					<p>{{ vproduct.price }}</p></a>
+				</div>
+			</div>
+		</li>
+		{% empty %}
+		<li>0 correspondance</li>
+		{% endfor %}	
+</ul>
+{% endif %}
+</div>
+</div>
+
+{% endblock content1%}

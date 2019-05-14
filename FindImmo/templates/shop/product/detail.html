@@ -1,0 +1,166 @@
+{% extends "shop/index.html" %}
+{% load static %}
+
+{% block title %}
+    {{ product.name }}
+{% endblock %}
+
+{% block content1 %}
+<div class="container plist">
+	<div class="col-md-8 rech">
+  		<div class="mySlides">
+    		<img id="myimage" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" style="width:100%">
+    		
+  		</div>
+
+  		<div class="mySlides">
+    		<img src="{% if product.image1 %}{{ product.image1.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" style="width:100%">
+    		
+  		</div>
+
+  		<div class="mySlides">
+    		<img src="{% if product.image2 %}{{ product.image2.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" style="width:100%">
+  			
+  		</div>
+    
+  		<div class="mySlides">
+    		<img src="{% if product.image3 %}{{ product.image3.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" style="width:100%">
+  		</div>
+  		
+  		<div class="mySlides">
+    		<img src="{% if product.image4 %}{{ product.image4.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" style="width:100%">
+  		</div>
+  		
+  		<div class="mySlides">
+    		<img src="{% if product.image5 %}{{ product.image5.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" style="width:100%">
+  		</div>
+    
+  		<a class="prev" onclick="plusSlides(-1)"><</a>
+  		<a class="next" onclick="plusSlides(1)">></a>
+  		<div class="caption-container">
+    		<p id="caption"></p>
+  		</div>
+
+  		<div class="row detimg">
+    		<div class="column">
+      			<img class="demo cursor" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" style="width:100%" onclick="currentSlide(1)" alt="{{product.name}}">
+    		</div>
+    		<div class="column">
+      			<img class="demo cursor" src="{% if product.image1 %}{{ product.image1.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" style="width:100%" onclick="currentSlide(2)" alt="{{product.name}}">
+    		</div>
+    		<div class="column">
+      			<img class="demo cursor" src="{% if product.image2 %}{{ product.image2.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" style="width:100%" onclick="currentSlide(3)" alt="{{product.name}}">
+    		</div>
+    		<div class="column">
+      			<img class="demo cursor" src="{% if product.image3 %}{{ product.image3.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" style="width:100%" onclick="currentSlide(4)" alt="{{product.name}}">
+    		</div>
+    		<div class="column">
+      			<img class="demo cursor" src="{% if product.image4 %}{{ product.image4.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" style="width:100%" onclick="currentSlide(5)" alt="{{product.name}}">
+    		</div>
+    		<div class="column">
+      			<img class="demo cursor" src="{% if product.image5 %}{{ product.image5.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" style="width:100%" onclick="currentSlide(6)" alt="{{product.name}}">
+    		</div>
+  		</div>
+	</div>
+	<div class="col-md-4 rech">
+  		<div class="descript">
+  			<h3 style="margin:5px auto;text-align: center;"><span>Contactez</span> le vendeur</h3>
+  			<p><span>Nom :</span> {{product.vendeur.name}}</p>
+  			<p><span>email :</span> {{product.vendeur.email}}</p>
+  			<p><span>phone1 :</span> {{product.vendeur.phone1}}</p>
+  			<p><span>phone2 :</span> {{product.vendeur.phone2}}</p>
+  			<p><span>phone3 :</span> {{product.vendeur.phone3}}</p>
+  			<p><span>addresse :</span> {{product.vendeur.address}}</p>
+  			<p><span>Ville :</span> {{product.vendeur.ville}}</p>
+  			<p><span>Quartier :</span> {{product.vendeur.quartier}}</p>
+  			<p><span>Localisation :</span> {{product.vendeur.localization}}</p>
+  		</div>
+  	</div>
+	<div class="col-md-8">
+	<div class="similaire tab">
+		<table class="pdetails">
+		<caption style="text-align:center;background-color: #696969;color:white;font-weight:bold;">Description du bien</caption>
+			<tbody>
+				<tr>
+					<td class="titre">Nom :</td>
+					<td class="data">{{product.name}}</td>
+					<td class="titre">Type bien :</td>
+					<td class="data">{{product.category}}</td>
+				</tr>
+				<tr>
+					<td class="titre">Ref. :</td>
+					<td class="data">{{product.reference}}</td>
+					<td class="titre">Action :</td>
+					<td class="data">{{product.action_type}}</td>
+				</tr>
+				<tr>
+					<td class="titre">Dimenssion:</td>
+					<td class="data">{{product.dimmension}}</td>
+					<td class="titre">Act. session :</td>
+					<td class="data">{{product.actsession}}</td>
+				</tr>
+				<tr>
+					<td class="titre">Chambre(s) :</td>
+					<td class="data">{{product.nbChambre}}</td>
+					<td class="titre">Toilette(s) :</td>
+					<td class="data">{{product.nbDouche}}</td>
+				</tr>
+				<tr>
+					<td class="titre">Prix :</td>
+					<td class="data">{{product.price}}</td>
+					<td class="titre">Localisation :</td>
+					<td class="data">Voir le Vendeur</td>
+				</tr>
+				<tr>
+	    			<td colspan="4" style="background-color:#696969;color: #fff ">Commodite:<br> {% for det in JoinProddetails %} => {{det.name}}<br> {% endfor %}</td>
+	  			</tr>
+			</tbody>
+		</table>
+	</div>
+	</div>
+</div>
+
+<div class="container">
+<div class="similaire sim">
+<h3> Produits similaires</h3>
+<ul class="clearfix demo">
+{% for product in like_queryset_list %}
+		<li>
+			<div class="gallery-grid1">
+				<a href="{{ product.get_absolute_url }}"><img src="{{ product.image.url }}" alt=" " class="img-responsive" /></a>
+				<div class="p-mask">
+					<a href="{{ product.get_absolute_url }}"><h4>{{ product.action_type }} <span>{{ product.category }}</span></h4>
+					<p>{{ product.localite }}</p>
+					<p>{{ product.price }} /mois</p></a>				
+				</div>
+			</div>
+		</li>
+{% endfor %}
+</ul>
+</div>
+</div>
+{% endblock content1 %}
+<!--     <div class="flexCont"> -->
+<!--         <div class="miniImgs"> -->
+<!--             <div class="imFace"> -->
+<!--             <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" alt="Nature" style="width:50%" onclick="myFunction(this);"> -->
+<!--             </div> -->
+
+<!--             <div class="imFace"> -->
+<!--             <img src="{% if product.image1 %}{{ product.image1.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" alt="Sauvace" style="width:50%" onclick="myFunction(this);"> -->
+<!--             </div> -->
+
+<!--             <div class="imFace"> -->
+<!--             <img src="{% if product.image2 %}{{ product.image2.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" alt="Nature" style="width:50%" onclick="myFunction(this);"> -->
+<!--             </div> -->
+            
+<!--             <div class="imFace"> -->
+<!--             <img src="{% if product.image3 %}{{ product.image3.url }}{% else %}{% static "images/no_image.jpg" %}{% endif %}" alt="Nature" style="width:50%" onclick="myFunction(this);"> -->
+<!--             </div> -->
+<!--         </div> -->
+<!-- </div> -->
+
+
+        
+        
+        

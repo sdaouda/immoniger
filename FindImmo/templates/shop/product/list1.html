@@ -1,0 +1,44 @@
+{% extends "shop/index.html" %}
+{% load static %}
+
+
+{% block content1 %}
+<div class="gallery agile" id="gallery">
+<div class="container">
+<div id = "lgallery" class="agile_gallery_grids w3-agile">
+	{% if prod2 %}
+	<ul class="clearfix demo">
+		{% for product in prod2 %}
+		<li>
+			<div class="gallery-grid1">
+				<a href="{{ product.get_absolute_url }}"><img src="{{ product.image.url }}" alt=" " class="img-responsive" /></a>
+				<div class="p-mask">
+					<a href="{{ product.get_absolute_url }}"><h4>{{ product.action_type }} <span>{{ product.category }}</span></h4>
+					<p>{{ product.localite }}</p>
+					<p>{{ product.price }} /mois</p></a>				
+				</div>
+			</div>
+		</li>
+		{% endfor %}		
+	</ul>
+	{% else %}
+	<ul class="clearfix demo">
+		{% for product in prod %}
+		<li>
+			<div class="gallery-grid1">
+				<a href="{{ product.get_absolute_url }}"><img src="{{ product.image.url }}" alt=" " class="img-responsive" /></a>
+				<div class="p-mask">
+					<a href="{{ product.get_absolute_url }}"><h4>{{ product.action_type }} <span>{{ product.category }}</span></h4>
+					<p>{{ product.localite }}</p>
+					<p>{{ product.price }} /mois</p></a>				
+				</div>
+			</div>
+		</li>
+		{% endfor %}		
+	</ul>
+	{% endif %}
+</div>
+<hr style="border: 10px solid #7ac143;">
+</div>
+</div>
+{% endblock content1 %}

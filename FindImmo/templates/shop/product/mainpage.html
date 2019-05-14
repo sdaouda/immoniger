@@ -1,0 +1,610 @@
+{% extends "shop/index.html" %}
+{% load static %}
+
+{% block content %}
+
+<!--/banner-section-->
+	<div id="demo-1" data-zs-src='["{% static "images/1.jpg" %}","{% static "images/3.jpg" %}","{% static "images/4.jpg" %}"]' data-zs-overlay="dots">
+		<div class="demo-inner-content">
+			<!--/banner-info-->
+			   <div class="baner-info">
+			      <h3>Vous cherchez une <span>Maison</span> en <span>location</span> ...</h3>
+				  <h4>Obtenir la villa de vos rêves</h4>
+				  <span><img src="{% static "images/logo2.png" %}" alt=""></span>
+			   </div>
+			<!--/banner-ingo-->		
+		</div>
+	</div>
+	<!--/banner-section-->
+<!-- /pop-->
+<div class="modal ab fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog sign" role="document">
+		<div class="modal-content about">
+			<div class="modal-header one">
+				<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+					<div class="discount one">
+						<h3>A Few Words about Us</h3>	
+					</div>							
+			</div>
+			<div class="modal-body about">
+					<img src="{% static "images/v5.jpg" %}" alt="w3ls" class="img-responsive">
+				<h4>Lorem ipsum Nam libero tempore</h4>
+				<p>Lorem ipsum Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere.Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+				
+			</div>		
+		</div>
+	</div>
+</div>
+<!-- //pop-->
+
+<!--/price-section-->
+<div class="container">
+<div class="tabs">
+	<button class="tablink" onclick="openPage('louer', this, 'LightSteelBlue')" id="defaultOpen">A louer</button>
+	<button class="tablink" onclick="openPage('vendre', this, 'green')">A vendre</button>
+	<!-- <button class="tablink" onclick="openPage('entretient', this, 'blue')">Entretient</button>
+	<button class="tablink" onclick="openPage('About', this, 'orange')">contact</button> -->
+	
+	<div id="louer" class="tabcontent">
+	<form action="{% url "shop:search_list" %}" method="get" accept-charset="utf-8">
+	  <div class="reservation">
+		<div class="section_room">
+			<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+			<select id="country" onchange="change_country(this.value)" name="l_local" class="frm-field required">
+				<option value="">Tous les lieux</option>
+				<option value="Terminus">Terminus</option>      
+				<option value="Plateaux">Plateaux</option>
+				<option value="Yantala">Yantala</option>
+				<option value="Bobiel">Bobiel</option>
+				<option value="Kouarakano">Kouara Kano</option>
+			</select>
+		</div>	
+		<div class="section_room">
+			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+			<select id="country1" onchange="change_country(this.value)" name="l_type" class="frm-field required">
+				<option value="">Tous les Types</option>
+				{% for cat in categories %}
+					<option value={{cat.name}}>{{cat.name}}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="reservation-grids" style="display:none;">
+			<div class="reservation-grid-left">
+				<div class="section_room">
+					<span class="fa fa-bed" aria-hidden="true"> </span>
+					<select id="country2" onchange="change_country(this.value)" name="l_chambre" class="frm-field required">
+						<option value="">Chambre(s)</option>
+						<option value="1">1</option>         
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="plus">plus</option>
+					</select>
+				</div>
+			</div>
+			<div class="reservation-grid-right">
+				<div class="section_room">
+					<span class="fa fa-wheelchair-alt" aria-hidden="true"> </span>
+					<select id="country2" onchange="change_country(this.value)" name="l_douche" class="frm-field required">
+						<option value="">Douche(s)</option>
+						<option value="1">1</option>         
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="plus">plus</option>
+					</select>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="reservation-grids" style="display:none;">
+			<div class="reservation-grid-left">
+				<div class="section_room">
+					<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+					<input type="text" id="country3" onchange="change_country(this.value)" name="l_pmin" class="frm-field required" value="">
+					<!-- <input type="checkbox" name="aucun" value="aucun"> Aucun<br>
+					<input type="checkbox" name="depext" value="dependance-externe"> Dependance externe<br>
+					<input type="checkbox" name="chauffo" value="chauffe-eau"> Chauffe Eau -->
+				</div>
+			</div>
+			<div class="reservation-grid-right">
+				<div class="section_room">
+					<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+					<input type="text" id="country3" onchange="change_country(this.value)" name="l_pmax" class="frm-field required" value="">
+					<!-- <input type="checkbox" name="douext" value="douche-externe"> Douche externe<br>
+					<input type="checkbox" name="clim" value="climatisation"> Climatisaion<br>
+					<input type="checkbox" name="gazonjar" value="gazon-jardin"> Gason-Jardin -->
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="keywords">
+			<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+			<input type="text" name="l_KeyWords" placeholder="Key Words">
+			<input type="submit" value="OK">
+			<input type="hidden" id="actId" name="actId" value="louer">
+		</div>
+		</div>
+	</form>
+	</div>
+	
+	<div id="vendre" class="tabcontent">
+	<form action="{% url "shop:search_list" %}" method="get" accept-charset="utf-8">
+	<div class="reservation">
+		<div class="section_room">
+			<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+			<select id="country" onchange="change_country(this.value)" name="v_local" class="frm-field required">
+				<option value="all">Tous les lieux</option>
+				<option value="Terminus">Terminus</option>      
+				<option value="Plateaux">Plateaux</option>
+				<option value="Yantala">Yantala</option>
+				<option value="Bobiel">Bobiel</option>
+				<option value="Kouarakano">Kouara Kano</option>
+			</select>
+		</div>	
+		<div class="section_room">
+			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+			<select id="country1" onchange="change_country(this.value)" name="v_type" class="frm-field required">
+				<option value="all">Tous les Types</option>
+				{% for cat in categories %}
+					<option value={{cat.name}}>{{cat.name}}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="reservation-grids" style="display:none;">
+			<div class="reservation-grid-left">
+				<div class="section_room">
+				<span class="fa fa-bed" aria-hidden="true"> </span>
+				<select id="country2" onchange="change_country(this.value)" name="v_chambre" class="frm-field required">
+					<option value="">Chambre(s)</option>
+					<option value="any">pas de choix</option>
+					<option value="1">1</option>         
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="plus">plus</option>
+				</select>
+			</div>
+			</div>
+			<div class="reservation-grid-right">
+				<div class="section_room">
+					<span class="fa fa-wheelchair-alt" aria-hidden="true"> </span>
+					<select id="country2" onchange="change_country(this.value)" name="v_douche" class="frm-field required">
+						<option value="">Toilette(s)</option>
+						<option value="any">pas de choix</option>
+						<option value="1">1</option>        
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="plus">plus</option>
+					</select>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="reservation-grids" style="display:none;">
+			<div class="reservation-grid-left">
+				<div class="section_room">
+					<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+					<input type="text" id="country3" onchange="change_country(this.value)" name="v_pmin" class="frm-field required" value="vpmin">	
+				</div>
+			</div>
+			<div class="reservation-grid-right">
+				<div class="section_room">
+					<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+					<input type="text" id="country3" onchange="change_country(this.value)" name="v_pmax" class="frm-field required" value="vpmax">		
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="keywords">
+			<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+			<input type="text" name="v_KeyWords" placeholder="Recherche par mot cle">
+			<input type="submit" value="OK">
+			<input type="hidden" id="actId" name="actId" value="vendre">
+		</div>
+	</div>
+	</form>
+	</div>
+	<!-- <button id="details" onclick="FindMore()">Plus de Details..</button> -->
+	<a href="{% url "shop:search" %}"><button id="details">Plus de Details..</button></a>
+</div>
+
+<div class="price-section">
+       <div class="col-md-6 plat" style="padding-left:0;">
+       		
+			<h2>Top 10 Location</h2>
+			<div id="myCarousel1" class="carousel slide" data-ride="carousel" data-interval="2000" data-pause="hover">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel1" data-slide-to="1"></li>
+					<li data-target="#myCarousel1" data-slide-to="2"></li>
+					<li data-target="#myCarousel1" data-slide-to="4"></li>
+					<li data-target="#myCarousel1" data-slide-to="5"></li>
+					<li data-target="#myCarousel1" data-slide-to="6"></li>
+				</ol>
+				<!-- Wrapper for slides -->	
+				<div class="carousel-inner" role="listbox">
+					{% with firstprod=Lproducts|first %}
+    					<div class="item active">
+						<div class="serv-w3ls1">
+							<img src="{% static "images/v3.jpg" %}" alt="w3ls" class="img-responsive">
+<!-- 							<a href="#"><img src="{{.image.url }}" alt="w3ls" class="img-responsive"></a> -->
+						    <span class="four">{{ firstprod.price }} cfa/mois</span>
+							<div class="rent-bottom">
+								<h4>{{ firstprod.name }}</h4>
+								<h5>{{ firstprod.action_type }}</h5>
+<!-- 								<p>{{ product.description }}<p> -->
+								<div class="rent-icons">
+								  <h6 class="area">Area: 450m1</h6>
+								  	<div class="r-icons">
+									   <ul class="icons-right">
+											<li><i class="fa fa-bed" aria-hidden="true"></i> 3</li>
+											<li><i class="fa fa-wheelchair-alt" aria-hidden="true"></i> 2</li>
+										</ul>
+								  	</div>
+								  <div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+						</div>
+					{% endwith %}
+					{% for product in Lproducts %}
+					{% if product != Lproducts|first %}
+					<div class="item">
+						<div class="serv-w3ls1">
+<!-- 							<img src="{% static "images/v3.jpg" %}" alt="w3ls" class="img-responsive"> -->
+							<a href="#"><img src="{{ product.image.url }}" alt="w3ls" class="img-responsive"></a>
+						    <span class="four">{{ product.price }}cfa/mois</span>
+							<div class="rent-bottom">
+								<h4>{{ product.name }}</h4>
+								<h5>{{ product.action_type }}</h5>
+<!-- 								<p>{{ product.description }}<p> -->
+								<div class="rent-icons">
+								  <h6 class="area">Area: 450m1</h6>
+								  	<div class="r-icons">
+									   <ul class="icons-right">
+											<li><i class="fa fa-bed" aria-hidden="true"></i> 3</li>
+											<li><i class="fa fa-wheelchair-alt" aria-hidden="true"></i> 2</li>
+										</ul>
+								  	</div>
+								  <div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endif %}
+					{% endfor %}
+				</div>
+			</div>	
+		</div>	
+		<div class="col-md-6 plat" style="padding-right:0;">
+			<h2>Top 10 Vente</h2>
+			<div id="myCarousel1" class="carousel slide" data-ride="carousel" data-interval="2000" data-pause="hover">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel1" data-slide-to="1"></li>
+					<li data-target="#myCarousel1" data-slide-to="2"></li>
+					<li data-target="#myCarousel1" data-slide-to="4"></li>
+					<li data-target="#myCarousel1" data-slide-to="5"></li>
+					<li data-target="#myCarousel1" data-slide-to="6"></li>
+				</ol>
+				<!-- Wrapper for slides -->	
+				<div class="carousel-inner" role="listbox">
+					{% with firstprod=Vproducts|first %}
+    					<div class="item active">
+						<div class="serv-w3ls1">
+							<img src="{% static "images/v3.jpg" %}" alt="w3ls" class="img-responsive">
+<!-- 							<a href="#"><img src="{{.image.url }}" alt="w3ls" class="img-responsive"></a> -->
+						    <span class="four">{{ firstprod.price }} cfa/mois</span>
+							<div class="rent-bottom">
+								<h4>{{ firstprod.name }}</h4>
+								<h5>{{ firstprod.action_type }}</h5>
+<!-- 								<p>{{ product.description }}<p> -->
+								<div class="rent-icons">
+								  <h6 class="area">Area: 450m1</h6>
+								  	<div class="r-icons">
+									   <ul class="icons-right">
+											<li><i class="fa fa-bed" aria-hidden="true"></i> 3</li>
+											<li><i class="fa fa-wheelchair-alt" aria-hidden="true"></i> 2</li>
+										</ul>
+								  	</div>
+								  <div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+						</div>
+					{% endwith %}
+					{% for product in Vproducts %}
+					{% if product != Vproducts|first %}
+					<div class="item">
+						<div class="serv-w3ls1">
+<!-- 							<img src="{% static "images/v3.jpg" %}" alt="w3ls" class="img-responsive"> -->
+							<a href="#"><img src="{{ product.image.url }}" alt="w3ls" class="img-responsive"></a>
+						    <span class="four">{{ product.price }} cfa</span>
+							<div class="rent-bottom">
+								<h4>{{ product.name }}</h4>
+								<h5>{{ product.action_type }}</h5>
+<!-- 								<p>{{ product.description }}<p> -->
+								<div class="rent-icons">
+								  <h6 class="area">Area: 450m1</h6>
+								  	<div class="r-icons">
+									   <ul class="icons-right">
+											<li><i class="fa fa-bed" aria-hidden="true"></i> 3</li>
+											<li><i class="fa fa-wheelchair-alt" aria-hidden="true"></i> 2</li>
+										</ul>
+								  	</div>
+								  <div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endif %}
+					{% endfor %}
+				</div>
+			</div>	
+		</div>
+		<div class="clearfix"> </div>	
+	</div>
+</div>		
+<!--//price-section--> 
+{% endblock content %}
+{% block content1 %}
+
+<div class="container">
+	<div class="col-md-3" style="padding:0;">
+		<!-- Sidebar -->
+	    <div class="bg-light border-right" id="sidebar-wrapper">
+	      <div class="list-group list-group-flush">
+	      	{% for c in categories %}
+			    <a href="{{ c.get_absolute_url }}" class="list-group-item list-group-item-action bg-light">{{ c.name }}</a>
+			{% endfor %}
+	      </div>
+	    </div>
+	</div>
+	<div id="news" class="col-md-9" style="padding:0;">
+		{% if Lproducts %}
+		<hr style="border: 10px solid #7ac143; position:relative;margin-top:0px;top:0px;">
+		<div class="gallery agile" id="gallery">
+			<div id = "lgallery" class="agile_gallery_grids w3-agile">
+				<h3 class="tittle"><span>Gallerie</span> Location ({{Lproducts.count}})</h3>
+				<ul class="clearfix demo">
+					{% for product in Lproducts %}
+					<li>
+						<div class="gallery-grid1">
+							<a href="{{ product.get_absolute_url }}"><img src="{{ product.image.url }}" alt=" " class="img-responsive" /></a>
+							<div class="p-mask">
+								<a href="{{ product.get_absolute_url }}"><h4>{{ product.action_type }} <span>{{ product.category }}</span></h4>
+								<p>{{ product.localite }}</p>
+								<p>{{ product.price }} /mois</p></a>				
+							</div>
+						</div>
+					</li>
+					{% endfor %}		
+				</ul>
+			</div>
+			<hr style="border: 10px solid #7ac143;">
+		</div>
+		{% endif %}
+
+		{% if Vproducts %}
+		<div class="gallery agile" id="gallery">
+			<div id = "vgallery" class="agile_gallery_grids w3-agile">
+				<h3 class="tittle">Gallerie<span> Vente</span> ({{Vproducts.count}})</h3>
+				<ul class="clearfix demo">
+					{% for product in Vproducts %}
+					<li>
+						<div class="gallery-grid1">
+							<a href="{{ product.get_absolute_url }}"><img src="{{ product.image.url }}" alt=" " class="img-responsive" /></a>
+							<div class="p-mask">
+								<a href="{{ product.get_absolute_url }}"><h4>{{ product.action_type }} <span>{{ product.category }}</span></h4>
+								<p>{{ product.localite }}</p>
+								<p>{{ product.price }} cfa</p></a>		
+							</div>
+						</div>
+					</li>
+					{% endfor %}		
+				</ul>
+			</div>
+			<hr style="border: 10px solid #7ac143;">
+		</div>
+		{% endif %}
+		
+	</div>
+</div>
+{% endblock content1 %}
+
+{% block content2 %}
+<!--/featured-projects-->
+<!-- <div class="gallery agile" id="gallery"> -->
+<!--/featured-projects-->
+<!-- <div class="gallery agile" id="gallery"> -->
+<div class="featured-section" id="projects">	
+	<div class="container">
+		<h3 class="tittle">Nos <span>Services</span></h3>
+		<div class="content-bottom-in">
+			<ul id="flexiselDemo1">
+				<li><div class="project-fur">
+						<a href="#" data-toggle="modal" data-target="#myModal0" ><img class="img-responsive" src="{% static "images/serv1.JPG" %}" alt="w3ls" class="img-responsive"></a>
+							<div class="fur">
+								<div class="fur1">
+                                    <span class="fur-money">p1</span>
+                                  <h6 class="fur-name"><a href="#" data-toggle="modal" data-target="#myModal1">Contrary to popular</a></h6>
+                                   	<span>Paris</span>
+                       			</div>
+	                            <div class="fur2">
+	                               	<span>2 BHK</span>
+	                            </div>
+							</div>	
+							<span class="five">40,000$</span>									
+					</div>
+				</li>
+				<li><div class="project-fur">
+						<a href="#" data-toggle="modal" data-target="#myModal2" ><img class="img-responsive" src="{% static "images/banner13.jpg" %}" alt="w3ls" class="img-responsive"></a>
+							<div class="fur">
+								<div class="fur1">
+                                    <span class="fur-money">p3 </span>
+                                   <h6 class="fur-name"><a href="#" data-toggle="modal" data-target="#myModal1">Contrary to popular</a></h6>
+                                   	<span>Paris</span>
+                       			</div>
+	                            <div class="fur2">
+	                               	<span>2 BHK</span>
+	                            </div>
+							</div>	
+						<span class="five">45,000$</span>											
+					</div>
+				</li>
+				<li><div class="project-fur">
+						<a href="#" data-toggle="modal" data-target="#myModal3" ><img class="img-responsive" src="{% static "images/banner12.jpg" %}" alt="w3ls" class="img-responsive"></a>
+							<div class="fur">
+								<div class="fur1">
+                                    <span class="fur-money">$2.44 0 - $5.280 </span>
+                                  <h6 class="fur-name"><a href="#" data-toggle="modal" data-target="#myModal1">Contrary to popular</a></h6>
+                                   	<span>Paris</span>
+                       			</div>
+	                            <div class="fur2">
+	                               	<span>2 BHK</span>
+	                             </div>
+							</div>	
+						<span class="five">Renovation</span>											
+					</div>
+				</li>
+				<li><div class="project-fur">
+						<a href="#" data-toggle="modal" data-target="#myModal4" ><img class="img-responsive" src="{% static "images/serv1.JPG" %}" alt="w3ls" class="img-responsive"></a>
+							<div class="fur">
+								<div class="fur1">
+                                    <span class="fur-money">$2.44 0 - $5.280 </span>
+                                  <h6 class="fur-name"><a href="#" data-toggle="modal" data-target="#myModal1">Contrary to popular</a></h6>
+                                   	<span>Paris</span>
+                       			</div>
+	                            <div class="fur2">
+	                               	<span>2 BHK</span>
+	                            </div>
+							</div>	
+							<span class="five">40,000$</span>									
+					</div>
+				</li>
+				<li><div class="project-fur">
+						<a href="#" data-toggle="modal" data-target="#myModal5" ><img class="img-responsive" src="{% static "images/serv1.JPG" %}" alt="w3ls" class="img-responsive"></a>
+							<div class="fur">
+								<div class="fur1">
+                                    <span class="fur-money">$2.44 0 - $5.280 </span>
+                                  <h6 class="fur-name"><a href="#" data-toggle="modal" data-target="#myModal1">Contrary to popular</a></h6>
+                                   	<span>Paris</span>
+                       			</div>
+	                            <div class="fur2">
+	                               	<span>2 BHK</span>
+	                            </div>
+							</div>	
+							<span class="five">40,000$</span>									
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- /pop1-->
+		<div class="modal ab fade" id="myModal0" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog sign" role="document">
+				<div class="modal-content about">
+					<div class="modal-header one">
+						<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+							<div class="discount one">
+								<h3>A Few Words about Us</h3>	
+							</div>							
+					</div>
+					<div class="modal-body about">
+							<img src="{% static "images/serv1.JPG" %}" alt="w3lsr" class="img-responsive">
+						<h4>Lorem ipsum Nam libero tempore</h4>
+						<p>Lorem ipsum Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere.Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+						
+					</div>		
+				</div>
+			</div>
+		</div>
+		<!-- //pop1-->
+		<!-- /pop2-->
+		<div class="modal ab fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog sign" role="document">
+				<div class="modal-content about">
+					<div class="modal-header one">
+						<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+							<div class="discount one">
+								<h3>A Few Words about Us</h3>	
+							</div>							
+					</div>
+					<div class="modal-body about">
+							<img src="{% static "images/banner13.jpg" %}" alt="w3ls" class="img-responsive">
+						<h4>Lorem ipsum Nam libero tempore</h4>
+						<p>Lorem ipsum Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere.Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+						
+					</div>		
+				</div>
+			</div>
+		</div>
+		<!-- //pop2-->
+		<!-- /pop3-->
+		<div class="modal ab fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog sign" role="document">
+				<div class="modal-content about">
+					<div class="modal-header one">
+						<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+							<div class="discount one">
+								<h3>A Few Words about Us</h3>	
+							</div>							
+					</div>
+					<div class="modal-body about">
+							<img src="images/banner12.jpg" alt="w3ls" class="img-responsive">
+						<h4>Lorem ipsum Nam libero tempore</h4>
+						<p>Lorem ipsum Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere.Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+						
+					</div>		
+				</div>
+			</div>
+		</div>
+		<!-- //pop3-->
+		<!-- /pop4-->
+		<div class="modal ab fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog sign" role="document">
+				<div class="modal-content about">
+					<div class="modal-header one">
+						<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+							<div class="discount one">
+								<h3>A Few Words about Us</h3>	
+							</div>							
+					</div>
+					<div class="modal-body about">
+							<img src="images/serv1.JPG" alt="w3ls" class="img-responsive">
+						<h4>Lorem ipsum Nam libero tempore</h4>
+						<p>Lorem ipsum Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere.Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+						
+					</div>		
+				</div>
+			</div>
+		</div>
+		<!-- //pop4-->
+		<!-- /pop5-->
+		<div class="modal ab fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog sign" role="document">
+				<div class="modal-content about">
+					<div class="modal-header one">
+						<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+							<div class="discount one">
+								<h3>A Few Words about Us</h3>	
+							</div>							
+					</div>
+					<div class="modal-body about">
+							<img src="images/serv1.JPG" alt="w3ls" class="img-responsive">
+						<h4>Lorem ipsum Nam libero tempore</h4>
+						<p>Lorem ipsum Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere.Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+						
+					</div>		
+				</div>
+			</div>
+		</div>
+		<!-- //pop5-->
+		
+	</div>
+</div>
+<!--//featured-projects-->
+{% endblock content2 %}

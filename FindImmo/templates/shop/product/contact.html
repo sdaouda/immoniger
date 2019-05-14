@@ -1,0 +1,91 @@
+{% extends "shop/index.html" %}
+{% load static %}
+
+{% block title %}
+    
+{% endblock %}
+
+{% block content1 %}
+
+
+<div class="header-media-wrap">
+	<div class="header-media">
+		<div class= "banner-parallax">
+			<div class = "banner-bg-wrap">
+				<div class="banner-inner prestation">
+					
+				</div>
+			</div>
+		</div>
+		<div class="banner-caption">
+			<h1>Nos prestations immobiliĂ¨res</h1>
+			<h2>Vite fait bien fait!</h2>
+		</div>
+	</div>
+</div>
+	
+<div class="container">
+<div class="row" style="padding:20px 0px;">
+	<div class="col-sm-4">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3879.521732756226!2d2.1109743137123114!3d13.503542206638688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDMwJzEyLjciTiAywrAwNic0Ny40IkU!5e0!3m2!1sfr!2sne!4v1554854425955!5m2!1sfr!2sne" width="350" height="350" frameborder="0" style="border:2px solid black" allowfullscreen></iframe>
+	</div>
+	<div class="col-sm-4 contactmail">
+	  <form action="/action_page.php">
+	    <div class="row">
+	      <div class="col-25">
+	        <label for="fname">First Name</label>
+	      </div>
+	      <div class="col-75">
+	        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-25">
+	        <label for="lname">Last Name</label>
+	      </div>
+	      <div class="col-75">
+	        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-25">
+	        <label for="country">Country</label>
+	      </div>
+	      <div class="col-75">
+	        <select id="country" name="country">
+	          <option value="australia">Australia</option>
+	          <option value="canada">Canada</option>
+	          <option value="usa">USA</option>
+	        </select>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-25">
+	        <label for="subject">Subject</label>
+	      </div>
+	      <div class="col-75 textmail">
+	        <textarea id="subject" name="subject" class="txtair" placeholder="Write something.." style="height:135px;"></textarea>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <input type="submit" value="Submit">
+	    </div>
+	  </form>
+	</div>
+	<div class="col-sm-4">
+		<div class="descript">
+  			<h3 style="margin:5px auto;text-align: center;"><span>Contactez</span> le vendeur</h3>
+  			<p><span>Nom :</span> Hamdallaye Immo</p>
+  			<p><span>email :</span> immo@gmail.com</p>
+  			<p><span>phone1 :</span> 22796967600</p>
+  			<p><span>phone2 :</span> 22794967600</p>
+  			<p><span>phone3 :</span> 22790967600</p>
+  			<p><span>addresse :</span> BP 11922</p>
+  			<p><span>Ville :</span> Niamey</p>
+  			<p><span>Quartier :</span> Terminus</p>
+  			<p><span>Localisation :</span> En face de l'hôtel Terminus</p>
+  		</div>
+	</div>
+</div>
+</div>
+{% endblock content1 %}    
